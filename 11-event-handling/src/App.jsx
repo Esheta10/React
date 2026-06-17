@@ -4,7 +4,8 @@ import { CustomButton } from './CustomButton'
 const App = () => {
   return (
     <div>
-        <CustomButton />
+        <CustomButton text="Like" />
+        <CustomButton text ="Share & Subscribe" />
     </div>
   )
 }
