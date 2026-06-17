@@ -1,14 +1,17 @@
 export const ProductList = () => {
     const products = [
         {
+            id: 1,
             name: "Laptop",
             price: "999$"
         },
         {
+            id: 2,
             name: "Tablet",
             price: "599$"
         },
         {
+            id: 3,
             name: "Mobile",
             price: "499$"
         }
@@ -19,7 +22,7 @@ export const ProductList = () => {
             {
                 products.map((product) => {
                     return(
-                            <div>
+                            <div key = {product.id}>
                                 <h3>Item - {product.name}</h3>
                                 <h3>Price - {product.price}</h3>
                                 <h5>-------------------------------</h5>
