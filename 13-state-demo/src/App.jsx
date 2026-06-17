@@ -1,6 +1,7 @@
 import React from 'react'
 import {Counter} from './Counter'
 import {LoginCard} from './LoginCard'
+import {UserDashboard} from './UserDashboard'
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Counter />
       <Counter />
       <LoginCard />
+      <UserDashboard isPremium={true} />
     </div>
   )
 }
