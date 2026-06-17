@@ -1,6 +1,7 @@
 import React from 'react'
 import {Greeting} from './Greeting'
 import {UserCard} from './UserCard'
+import {CardWrapper} from './CardWrapper'
 
 const App = () => {
   return (
@@ -13,6 +14,10 @@ const App = () => {
       <Greeting message="Good morning"/>
       <Greeting/>
       <UserCard name="Esheta" age={100} city="Kolkata" email="abc@gmail.com" />
+      <CardWrapper title="User Profile"> 
+        <h3>Bruce Wayne</h3>
+        <h3>bruce.wayne@gmail.com</h3>
+      </CardWrapper>
     </div>
   )
 }
