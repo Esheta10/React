@@ -1,5 +1,7 @@
 import React from 'react'
 import {Greeting} from './Greeting'
+import {UserCard} from './UserCard'
+
 const App = () => {
   return (
     <div>
@@ -10,6 +12,7 @@ const App = () => {
       <Greeting name="Bob"/>
       <Greeting message="Good morning"/>
       <Greeting/>
+      <UserCard name="Esheta" age={100} city="Kolkata" email="abc@gmail.com" />
     </div>
   )
 }
