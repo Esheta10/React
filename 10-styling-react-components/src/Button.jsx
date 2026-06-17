@@ -1,3 +1,16 @@
+// Inline CSS
+// export const Button = () => {
+//     return (
+//         <button style={
+//             {
+//                 backgroundColor: 'blue',
+//                 color: 'white',
+//                 padding: '10px 20px',
+//                 borderRadius: '5px'
+//             }
+//         }>Click Me</button>
+//     );
+// }
 // Regular CSS File
 // import './Button.css'
 // export const Button = () => {
