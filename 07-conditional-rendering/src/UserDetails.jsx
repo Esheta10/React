@@ -21,10 +21,20 @@
 // }
 
 // ternary operator
+// export const UserDetails = ({name, isOnline}) => {
+//     return(
+//         <div>
+//             {isOnline ? <h3>Welcome back! {name}</h3> : <h3>Please sign in</h3>}
+//         </div>
+//     );
+// }
+
+
+// Using && Operator(short-circuit)
 export const UserDetails = ({name, isOnline}) => {
-    return(
+    return (
         <div>
-            {isOnline ? <h3>Welcome back! {name}</h3> : <h3>Please sign in</h3>}
+            {isOnline && <h3>Hi there! {name}</h3>}
         </div>
     );
-}
+}       
