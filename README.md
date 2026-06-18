@@ -31,7 +31,7 @@ cd React
 npm install
 
 # Start the dev server
-npm start
+npm run dev
 ```
 
 App runs at `http://localhost:5173`
