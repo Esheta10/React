@@ -7,7 +7,7 @@ A hands-on collection of React concepts implemented from scratch — covering ev
 ## 📚 Topics Covered
 
 - **Core Fundamentals** — JSX, components, props, rendering
-- **State Management** — `useState`, state lifting, controlled components
+- **State Management** — `useState`, `useReducer` state lifting, controlled components
 - **Side Effects** — `useEffect`, cleanup, dependency array
 - **Refs** — `useRef`, DOM access, persisting values
 - **Context API** — `useContext`, global state without prop drilling
