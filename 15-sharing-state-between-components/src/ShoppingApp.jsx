@@ -1,57 +1,75 @@
 import {useState} from "react"
 
-const product = [
-    {
-        id:1,
-        name: "React Book"
-    },
-    {
-        id:2,
-        name: "Keyboard"
-    }
-]
+//Parent component
 export const ShoppingApp = () => {
 
-    const [cart, setCart] = useState([])
+    const [cartItems, setCartItems] = useState({
+        reactCourse: 0,
+        vueCourse: 0
+    })
 
-    const addToCart = (product) => {
-    setCart((prev) => {
-        const exists = prev.find((i) => i.id === product.id);
-        if (exists) return prev.map((i) => i.id === product.id ? { ...i, qty: i.qty + 1 } : i);
-        return [...prev, { ...product, qty: 1 }];
-    });
-};
+    const handleAddReactCourse = () => {
+        setCartItems({
+            ...cartItems, 
+            reactCourse: cartItems.reactCourse + 1,
+        });
+    }
+    const handleAddVueCourse = () => {
+        setCartItems({
+            ...cartItems,
+            vueCourse: cartItems.vueCourse + 1,
+        });
+    } 
 
+    const price = {
+        reactCourse: 49.99,
+        vueCourse: 39.99
+    }
     return (
-       <div>
-             <h2>Shopping App</h2><br/>
-            <ProductList onAdd={addToCart} />
-            <Cart cart={cart}/>
-       </div>
+        <div>
+            <h2>Shopping App Component</h2>
+            <ProductCard
+                name="React Course"
+                price= {price.reactCourse}
+                quantity= {cartItems.reactCourse}
+                onAddToCart= {handleAddReactCourse}
+            />
+            <ProductCard
+                name= "Vue Course"
+                price= {price.vueCourse}
+                quantity= {cartItems.vueCourse}
+                onAddToCart= {handleAddVueCourse}
+            />
+            <Cart cartItems={cartItems} price={price}/>
+        </div>
     );
 }
 
-const ProductList = ({onAdd}) => (
-        <div>
-        {
-            product.map((p) => (
-                <div key = {p.id}>
-                    <span>{p.name}</span>
-                    <button onClick={() => onAdd(p)}>Add</button>
-                </div>
-            ))
-        }
-    </div>
-)
+//Child Component
+const ProductCard = ({name, price, quantity, onAddToCart}) => {
 
-const Cart = ({cart}) => (
+
+    return (
         <div>
-        {
-            cart.map((i) => (
-                <div key={i.id}>
-                    {i.name} : {i.qty}
-                </div>
-            ))
-        }
-    </div>
-)
+            <h3>{name}</h3>
+            <p>{price}</p>
+            <p>Quantity: {quantity}</p>
+            <button onClick={onAddToCart}>Add To Cart</button>
+        </div>
+    );
+}
+
+//Child Component
+export const Cart = ({cartItems, price}) => {
+
+    const totalItems = cartItems.reactCourse + cartItems.vueCourse;
+    const totalPrice = cartItems.reactCourse * price.reactCourse 
+                    + cartItems.vueCourse*price.vueCourse
+    return (
+        <div>
+            <h3>Cart Summary</h3>
+            <p>Total items: {totalItems}</p>
+            <p>Total price: ${totalPrice.toFixed(2)}</p>
+        </div>
+    );
+}
