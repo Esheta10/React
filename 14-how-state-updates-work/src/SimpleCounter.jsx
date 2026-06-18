@@ -7,9 +7,15 @@ export const SimpleCounter = () => {
     console.log("Render phase: Component Rendering with count: ", count);
 
     const handleClick = () => {
-        console.log("Before setCount, count is: ", count);
+      
         setCount(count+1);
-        console.log("Still in trigger phase, after setCount, count is: ", count);
+        console.log("After setCount(count + 1), count is: ", count);
+
+        setCount(count+5);
+        console.log("After setCount(count + 5), count is: ", count);
+
+        setCount(count+10);
+        console.log("After setCount(count + 10), count is: ", count);
     }
 
     return (
