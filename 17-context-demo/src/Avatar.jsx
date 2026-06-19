@@ -1,10 +1,10 @@
-import {useState} from "react"
+import {useContext} from "react"
+import {UserContext} from './UserContext'
 
-export const Avatar = ({user}) => {
-
+export const Avatar = () => {
+    const user = useContext(UserContext);
     return (
         <div>
-            <h5>Avatar</h5>
             <p>User : {user.name}</p>
         </div>
     );

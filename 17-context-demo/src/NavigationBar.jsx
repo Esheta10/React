@@ -1,10 +1,10 @@
 import {UserMenu} from './UserMenu'
 
-export const NavigationBar = ({user}) => {
+export const NavigationBar = () => {
     return (
         <div>
             <h3>Navigation Bar</h3>
-            <UserMenu user={user} />
+            <UserMenu />
         </div>
     );
 }

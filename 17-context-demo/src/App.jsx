@@ -1,5 +1,6 @@
 import React from 'react'
 import {Header} from './Header'
+import { UserContext } from './UserContext';
 
 const App = () => {
   const user = {
@@ -9,10 +10,12 @@ const App = () => {
   };
 
   return (
-    <div>
-       <h1>Dashboard</h1>
-      <Header user={user}/>
-    </div>
+    <UserContext value={user}>
+       <div value={user}>
+          <h1>Dashboard</h1>
+          <Header />
+      </div>
+    </UserContext>
   )
 }
 
