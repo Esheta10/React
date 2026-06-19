@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <UserContext value={user}>
-       <div value={user}>
+       <div>
           <h1>Dashboard</h1>
           <Header />
       </div>
