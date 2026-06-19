@@ -41,13 +41,42 @@ const reducer = (state, action) => {
         };
 
         case "REMOVE_ITEM": {
-
+            // return all the items in a new array whose id doesn't match with payload id
             const filteredItems = state.items.filter((item) => item.id !== action.payload.id)
+            return {
+                ...state,
+                items: filteredItems,
+                totalAmount: filteredItems.reduce((total, item) => {
+                    return total + item.price * item.quantity;
+                },0),
+                totalItems: filteredItems.reduce((total, item) => {
+                    return total + item.quantity;
+                }, 0)
+            };
         };
+        
+        case "UPDATE_QUANTITY": {
+            if(action.payload.quantity === 0){
+                return reducer(state, {
+                    type: "REMOVE_ITEM",
+                    payload: {id: action.payload.id}
+                });
+            }
+            const updatedQuantityItems = state.items.map((item) => 
+            item.id === action.payload.id ? {...item, quantity: action.payload.quantity} : item)
 
-
-
-
+            return {
+                ...state,
+                items: updatedQuantityItems,
+                totalAmount: updatedQuantityItems.reduce((total, item) => {
+                    return total + item.price * item.quantity;
+                },0),
+                totalItems: updatedQuantityItems.reduce((total, item) => {
+                    return total + item.quantity;
+                }, 0)
+            };
+        }
+        case "CLEAR_CART": return initialState;
         default: return state;
     }
 };
@@ -84,6 +113,7 @@ export const ShoppingCartWithUseReducer = () => {
                             type: "ADD_ITEM",
                             payload: product
                         })}>Add to Cart</button>
+                        
                     </div>
                 ))
             }
@@ -94,12 +124,28 @@ export const ShoppingCartWithUseReducer = () => {
                         {state.items.map((item) => (
                             <div key={item.id}>
                                 <p>{item.name} - ${item.price} * {item.quantity}</p>
+                                <button onClick={() => dispatch({
+                                    type: "UPDATE_QUANTITY",
+                                    payload: {id: item.id, quantity: item.quantity - 1}
+                                })}>-</button>
+                                 <button onClick={() => dispatch({
+                                    type: "UPDATE_QUANTITY",
+                                    payload: {id: item.id, quantity: item.quantity + 1}
+                                })}>+</button>
+                                <button onClick={() => dispatch({
+                                    type: "REMOVE_ITEM",
+                                    payload: {id: item.id}
+                                })}>Remove Item</button>
                             </div>
                         ))}
                     </div>
                 )}
                 <h3>Total Items: {state.totalItems}</h3>
-                <h3>Total Price: {state.totalAmount.toFixed(2)}</h3>
+                <h3>Total Price: {state.totalAmount.toFixed(2)}</h3> 
+    
+                {
+                    state.items.length > 0 && (<button onClick={() => dispatch({type: "CLEAR_CART"})}>Clear Cart</button>)
+                }
             </div>
         </div>
     );
