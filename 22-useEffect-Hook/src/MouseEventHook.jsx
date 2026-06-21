@@ -14,6 +14,11 @@ export const MouseEventHook = () => {
     useEffect(() => {
         console.log("useEffect called");
         window.addEventListener("mousemove", logMousePosition);
+
+        return () => {
+            console.log("component umounting code");
+            window.removeEventListener("mousemove", logMousePosition);
+        }
     },[])
 
     return (
