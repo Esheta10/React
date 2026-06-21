@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import axios from 'axios'
 
 export const DataFetching = () => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]); //we take empty array as initialValue
 
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -11,7 +11,7 @@ export const DataFetching = () => {
             setPosts(res.data);
         })
         .catch(err => console.log(err));
-    },[])
+    },[]) // empty dependency -> does not depend on props and variables 
     return (
         <div>
             <ul>
