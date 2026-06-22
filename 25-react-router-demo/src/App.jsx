@@ -4,7 +4,7 @@ import {Home} from './Home'
 import {About} from './About'
 import {NavBar} from './Navbar'
 import { OrderSummary } from './OrderSummary'
-
+import { NoMatch } from './NoMatch'
 const App = () => {
   return (
     <div>
@@ -13,6 +13,7 @@ const App = () => {
         <Route path='/' element={<Home />}></Route>
         <Route path='about' element={<About />}></Route>
         <Route path='order-summary' element={<OrderSummary/>}></Route>
+        <Route path='*' element={<NoMatch/>}></Route>
       </Routes>
     </div>
   )
